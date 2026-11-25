@@ -1,0 +1,1586 @@
+:root {
+  --bg: #0c0509;
+  --velvet-dark: #160911;
+  --velvet-mid: #230d19;
+  --velvet-ruby: #451024;
+  --gold-light: #fff1d6;
+  --gold: #e7c284;
+  --gold-deep: #b88743;
+  --gold-line: rgba(231, 194, 132, 0.34);
+  --gold-line-soft: rgba(231, 194, 132, 0.16);
+  --crimson: #c8254b;
+  --crimson-soft: rgba(200, 37, 75, 0.22);
+  --text: #faf2e6;
+  --text-muted: #c2aa9d;
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==================== VELVET SPEAKEASY BACKDROP ==================== */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: #0c0509;
+}
+
+.ambient-photo {
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/lounge-backdrop.webp");
+  background-size: cover;
+  background-position: center bottom;
+  opacity: 0.44;
+  filter: saturate(1.06);
+}
+
+.ambient-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(20, 8, 14, 0.38) 0%, rgba(11, 4, 8, 0.84) 72%, rgba(9, 3, 6, 0.95) 100%),
+    linear-gradient(180deg, rgba(12, 5, 9, 0.72) 0%, rgba(12, 5, 9, 0.35) 45%, rgba(12, 5, 9, 0.88) 100%);
+}
+
+/* ==================== APP SHELL ==================== */
+.app-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 452px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: calc(10px + var(--safe-top)) 15px calc(86px + var(--safe-bottom));
+}
+
+.browser-tip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: rgba(35, 13, 25, 0.9);
+  border: 1px solid var(--gold-line);
+  color: var(--gold-light);
+  font-size: 12px;
+}
+
+/* ==================== HEADER ==================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 0 11px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-crest {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 45%, rgba(184, 37, 71, 0.36), rgba(20, 8, 15, 0.92));
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), inset 0 0 12px rgba(231, 194, 132, 0.16);
+  flex-shrink: 0;
+}
+
+.brand-crest img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
+.brand-kicker {
+  font-size: 9px;
+  letter-spacing: 2.2px;
+  color: var(--gold);
+  opacity: 0.82;
+  margin-bottom: 1px;
+  white-space: nowrap;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: linear-gradient(180deg, #fff6e4 0%, #e7c284 68%, #c79550 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.brand-text p {
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  color: var(--gold-light);
+  background: rgba(27, 11, 19, 0.82);
+  border: 1px solid var(--gold-line);
+  box-shadow: inset 0 1px 0 rgba(255, 241, 214, 0.12);
+  transition: transform 0.15s ease;
+}
+
+.pill-btn:active {
+  transform: scale(0.95);
+}
+
+.dot-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.circle-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: rgba(27, 11, 19, 0.82);
+  border: 1px solid var(--gold-line);
+  transition: transform 0.15s ease;
+}
+
+.circle-btn:active {
+  transform: scale(0.92);
+}
+
+/* ==================== INTENSITY BAR (3D CHARMS) ==================== */
+.intensity-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-bottom: 13px;
+  padding: 5px;
+  border-radius: 14px;
+  background: rgba(20, 8, 15, 0.84);
+  border: 1px solid var(--gold-line-soft);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
+}
+
+.intensity-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 6px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  transition: all 0.22s ease;
+}
+
+.chip-charm {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  transition: transform 0.22s ease;
+}
+
+.intensity-chip.active .chip-charm {
+  transform: scale(1.12);
+}
+
+.intensity-chip.active[data-level="mild"] {
+  background: linear-gradient(145deg, rgba(94, 42, 62, 0.72), rgba(40, 15, 28, 0.88));
+  border-color: rgba(231, 194, 132, 0.5);
+  color: var(--gold-light);
+  box-shadow: 0 4px 16px rgba(231, 194, 132, 0.16);
+}
+
+.intensity-chip.active[data-level="flirty"] {
+  background: linear-gradient(145deg, rgba(168, 31, 66, 0.72), rgba(66, 14, 32, 0.9));
+  border-color: rgba(231, 194, 132, 0.58);
+  color: #fff2e2;
+  box-shadow: 0 4px 18px rgba(200, 37, 75, 0.32);
+}
+
+.intensity-chip.active[data-level="wild"] {
+  background: linear-gradient(145deg, rgba(196, 28, 59, 0.85), rgba(82, 10, 28, 0.95));
+  border-color: #f0cf95;
+  color: #fff5e8;
+  box-shadow: 0 4px 20px rgba(212, 42, 78, 0.42);
+}
+
+/* ==================== PANELS & ORNATE STATIONERY ==================== */
+.main-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.view {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeInUp 0.24s ease;
+}
+
+.view.active {
+  display: flex;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Portrait Velvet Card Frame (uses generated Art Deco corner filigree) */
+.tarot-frame-panel {
+  position: relative;
+  border-radius: 14px;
+  padding: 22px 18px 20px;
+  background-color: #190a13;
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(25, 10, 19, 0.25), rgba(16, 6, 12, 0.55)),
+    url("./assets/velvet-card-frame.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(231, 194, 132, 0.42);
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.65),
+    inset 0 0 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Flexible-height Velvet Panel with crisp CSS Art Deco gold corners */
+.velvet-panel {
+  position: relative;
+  border-radius: 14px;
+  padding: 18px 16px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(168, 31, 66, 0.16), transparent 65%),
+    linear-gradient(165deg, rgba(33, 13, 24, 0.94), rgba(17, 7, 13, 0.96));
+  border: 1px solid rgba(231, 194, 132, 0.36);
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.58),
+    inset 0 0 0 3px rgba(231, 194, 132, 0.06);
+}
+
+.corner-ornament {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.72;
+  pointer-events: none;
+}
+.corner-ornament.tl { top: 6px; left: 6px; border-width: 1.5px 0 0 1.5px; }
+.corner-ornament.tr { top: 6px; right: 6px; border-width: 1.5px 1.5px 0 0; }
+.corner-ornament.bl { bottom: 6px; left: 6px; border-width: 0 0 1.5px 1.5px; }
+.corner-ornament.br { bottom: 6px; right: 6px; border-width: 0 1.5px 1.5px 0; }
+
+/* Sub-segments */
+.sub-segment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.seg-btn {
+  flex: 1;
+  padding: 8.5px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  background: rgba(24, 9, 17, 0.78);
+  border: 1px solid rgba(231, 194, 132, 0.14);
+  transition: all 0.18s ease;
+}
+
+.seg-btn.active {
+  color: var(--gold-light);
+  background: linear-gradient(180deg, rgba(78, 22, 42, 0.85), rgba(38, 12, 24, 0.92));
+  border-color: rgba(231, 194, 132, 0.52);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.seg-ghost-btn {
+  padding: 8.5px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  background: rgba(231, 194, 132, 0.09);
+  border: 1px solid rgba(231, 194, 132, 0.3);
+  white-space: nowrap;
+}
+
+/* Luxury Champagne Gold Foil & Velvet Buttons */
+.primary-btn {
+  padding: 13px 18px;
+  border-radius: 11px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #1f0a11;
+  background: linear-gradient(135deg, #fff2d8 0%, #e7c284 48%, #c6914b 100%);
+  border: 1px solid #fff3dc;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.5),
+    0 2px 14px rgba(231, 194, 132, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.primary-btn:active {
+  transform: scale(0.97);
+}
+
+.primary-btn:disabled,
+.secondary-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  padding: 13px 16px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--gold-light);
+  background: rgba(38, 14, 26, 0.85);
+  border: 1px solid var(--gold-line);
+  transition: transform 0.15s ease;
+}
+
+.secondary-btn:active {
+  transform: scale(0.97);
+}
+
+.primary-btn.full-width {
+  width: 100%;
+}
+
+.primary-btn.compact {
+  padding: 10px 16px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.card-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: rgba(231, 194, 132, 0.12);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-line);
+}
+
+.tag-pill.rose {
+  background: rgba(184, 37, 71, 0.24);
+  color: #ffd6e0;
+  border-color: rgba(224, 92, 122, 0.45);
+}
+
+.tag-pill.gold {
+  background: rgba(231, 194, 132, 0.14);
+  color: var(--gold-light);
+  border-color: rgba(231, 194, 132, 0.42);
+}
+
+.tiny-pill-btn {
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--gold-light);
+  background: rgba(38, 14, 25, 0.88);
+  border: 1px solid var(--gold-line);
+}
+
+.tiny-pill-btn.gold {
+  color: #fff0d1;
+  background: rgba(231, 194, 132, 0.16);
+  border-color: rgba(231, 194, 132, 0.45);
+}
+
+.tiny-pill-btn.rose {
+  color: #ffd5e0;
+  background: rgba(184, 37, 71, 0.28);
+  border-color: rgba(224, 92, 122, 0.5);
+}
+
+.mini-action-btn {
+  padding: 8px 13px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: transform 0.15s ease;
+}
+
+.mini-action-btn:active {
+  transform: scale(0.95);
+}
+
+.mini-action-btn.rose {
+  background: linear-gradient(135deg, rgba(184, 37, 71, 0.48), rgba(112, 18, 42, 0.68));
+  border: 1px solid rgba(232, 138, 158, 0.48);
+  color: #ffe4ec;
+}
+
+.mini-action-btn.gold {
+  background: linear-gradient(135deg, rgba(231, 194, 132, 0.28), rgba(145, 98, 38, 0.36));
+  border: 1px solid rgba(231, 194, 132, 0.52);
+  color: var(--gold-light);
+}
+
+.mini-action-btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--gold-line-soft);
+  color: var(--text);
+}
+
+.icon-mini-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: rgba(231, 194, 132, 0.1);
+  border: 1px solid var(--gold-line-soft);
+}
+
+.text-link-btn {
+  font-size: 12px;
+  color: var(--gold);
+  padding: 4px 6px;
+  letter-spacing: 0.3px;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.muted-xs {
+  color: var(--gold);
+  opacity: 0.78;
+  font-family: var(--font-serif);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* ==================== 1. ASTROLABE ROULETTE WHEEL ==================== */
+.wheel-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 2px;
+}
+
+.wheel-pointer {
+  position: relative;
+  z-index: 5;
+  margin-bottom: -22px;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.78));
+}
+
+.wheel-ring {
+  position: relative;
+  width: min(82vw, 326px);
+  height: min(82vw, 326px);
+  border-radius: 50%;
+  padding: 7px;
+  background: conic-gradient(
+    from 0deg,
+    #9e6f34,
+    #fff0d1,
+    #b8843e,
+    #593714,
+    #e7c284,
+    #fff0d1,
+    #9e6f34
+  );
+  box-shadow:
+    0 0 0 2px rgba(18, 7, 12, 0.95),
+    0 0 0 4px rgba(231, 194, 132, 0.35),
+    0 22px 48px rgba(0, 0, 0, 0.78),
+    0 0 38px rgba(184, 37, 71, 0.24);
+}
+
+#wheelCanvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+  background: #14070d;
+}
+
+.wheel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(145deg, #fff3db, #c89248 58%, #694316);
+  border: 3px solid #17080f;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.75),
+    0 0 18px rgba(231, 194, 132, 0.38);
+  transition: transform 0.15s ease;
+}
+
+.wheel-hub:active {
+  transform: translate(-50%, -50%) scale(0.93);
+}
+
+.hub-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 35% 28%, #6b1732, #2b0916 78%);
+  border: 1px solid rgba(255, 241, 214, 0.65);
+  color: var(--gold-light);
+}
+
+.hub-main {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.15;
+}
+
+.hub-sub {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.result-card {
+  text-align: center;
+  padding: 16px 18px;
+}
+
+.result-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.result-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.result-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ==================== 2. KING GAME (GILDED TAROT) ==================== */
+.hero-card {
+  text-align: center;
+  padding: 26px 22px 24px;
+}
+
+.hero-art-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.hero-art-img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.65));
+}
+
+.eyebrow-ornament {
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.hero-card h2 {
+  margin: 0 0 8px;
+  font-family: var(--font-serif);
+  font-size: 21px;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.king-setup-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(12, 4, 8, 0.55);
+  border: 1px solid var(--gold-line-soft);
+}
+
+.setup-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gold-light);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.step-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(231, 194, 132, 0.14);
+  border: 1px solid var(--gold-line);
+  color: var(--gold-light);
+  font-size: 17px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.step-val {
+  min-width: 24px;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.king-player-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.preview-chip {
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(231, 194, 132, 0.08);
+  border: 1px solid var(--gold-line-soft);
+  color: #efe2d2;
+}
+
+.deal-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  padding: 0 2px;
+}
+
+.deal-player-banner {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(33, 12, 22, 0.86);
+  border: 1px solid var(--gold-line);
+  margin: 8px 0 14px;
+}
+
+.deal-player-banner strong {
+  font-family: var(--font-serif);
+  color: var(--gold-light);
+  font-size: 17px;
+  margin-left: 4px;
+}
+
+/* True 2:3 Museum Gilded Tarot Card */
+.flip-card {
+  width: min(68vw, 248px);
+  aspect-ratio: 2 / 3;
+  margin: 0 auto 14px;
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.78),
+    0 0 24px rgba(231, 194, 132, 0.18);
+}
+
+/* Tarot Back */
+.flip-front {
+  background-color: #170810;
+  background-image: url("./assets/tarot-back.webp");
+  background-size: 100% 100%;
+  justify-content: flex-end;
+  padding: 18px 14px;
+}
+
+.tarot-front-overlay {
+  width: 100%;
+  padding: 10px 10px 8px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(16, 6, 11, 0.76), rgba(16, 6, 11, 0.93));
+  border: 1px solid rgba(231, 194, 132, 0.46);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tarot-pill {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.8px;
+}
+
+.tarot-sub-note {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+/* Tarot Numbered Front */
+.flip-back {
+  transform: rotateY(180deg);
+  background-color: #1a0b14;
+  background-image: url("./assets/velvet-card-frame.webp");
+  background-size: 100% 100%;
+  border: 1.5px solid rgba(231, 194, 132, 0.58);
+  justify-content: center;
+  padding: 26px 20px;
+}
+
+/* Tarot KING Front (bespoke crown & coupe illustration in upper 62%) */
+.flip-back.is-king {
+  background-image: url("./assets/tarot-king-front.webp");
+  background-size: 100% 100%;
+  border-color: #f3d299;
+  justify-content: flex-end;
+  padding: 20px 18px 24px;
+}
+
+.card-ornament {
+  font-size: 10px;
+  letter-spacing: 2.2px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.flip-back.is-king .card-ornament {
+  margin-bottom: 4px;
+}
+
+.card-role-icon {
+  font-family: var(--font-serif);
+  font-size: 74px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 12px;
+  background: linear-gradient(180deg, #fff6e3 0%, #e7c284 60%, #b5803b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
+}
+
+.flip-back.is-king .card-role-icon {
+  display: none;
+}
+
+.card-role-title {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.card-role-tip {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.decree-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.badge-gold {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: var(--gold-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(231, 194, 132, 0.13);
+  border: 1px solid var(--gold-line);
+}
+
+.king-reveal-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 11px;
+  background: rgba(12, 4, 8, 0.55);
+  border: 1px solid var(--gold-line-soft);
+  margin-bottom: 13px;
+}
+
+.king-reveal-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.king-reveal-name {
+  flex: 1;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.decree-box {
+  padding: 16px 15px;
+  border-radius: 12px;
+  background: linear-gradient(155deg, rgba(92, 18, 40, 0.36), rgba(22, 8, 15, 0.72));
+  border: 1px solid rgba(231, 194, 132, 0.3);
+  margin-bottom: 14px;
+}
+
+.decree-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.decree-text {
+  font-family: var(--font-serif);
+  font-size: 17.5px;
+  font-weight: 600;
+  color: #fff6eb;
+  line-height: 1.62;
+  min-height: 62px;
+}
+
+.decree-controls {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 10px;
+}
+
+.revealed-targets {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 11px;
+  background: rgba(231, 194, 132, 0.11);
+  border: 1px solid rgba(231, 194, 132, 0.38);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--gold-light);
+}
+
+.custom-decree-wrap {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--gold-line-soft);
+}
+
+.custom-decree-wrap input,
+.add-row input,
+.modal-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(10, 4, 7, 0.65);
+  border: 1px solid var(--gold-line-soft);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+}
+
+.custom-decree-wrap input:focus,
+.add-row input:focus,
+.modal-textarea:focus {
+  border-color: var(--gold);
+}
+
+/* ==================== 3. DILEMMA / TRUTH / DARE ==================== */
+.card-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.td-meta-right {
+  display: flex;
+  gap: 6px;
+}
+
+.dilemma-question {
+  margin: 0 0 14px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.48;
+}
+
+.dilemma-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vs-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 15px 13px;
+  border-radius: 12px;
+  text-align: left;
+  border: 1px solid var(--gold-line-soft);
+  transition: transform 0.14s ease, border-color 0.2s ease;
+}
+
+.vs-option:active {
+  transform: scale(0.985);
+}
+
+.vs-option.opt-a {
+  border-color: rgba(224, 92, 122, 0.42);
+  background: linear-gradient(135deg, rgba(138, 24, 54, 0.36), rgba(30, 10, 19, 0.75));
+}
+
+.vs-option.opt-b {
+  border-color: rgba(231, 194, 132, 0.42);
+  background: linear-gradient(135deg, rgba(94, 56, 24, 0.34), rgba(26, 11, 18, 0.78));
+}
+
+.vs-letter {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--gold-light);
+  background: rgba(231, 194, 132, 0.14);
+  border: 1px solid var(--gold-line);
+}
+
+.vs-text {
+  flex: 1;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.48;
+}
+
+.vs-votes {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(12, 4, 8, 0.6);
+  border: 1px solid var(--gold-line-soft);
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -5px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.vs-divider span {
+  font-family: var(--font-serif);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  padding: 2px 11px;
+  border-radius: 999px;
+  background: #1a0a13;
+  border: 1px solid var(--gold-line);
+}
+
+.judge-bar {
+  margin-top: 12px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: rgba(12, 4, 8, 0.52);
+  border: 1px solid rgba(231, 194, 132, 0.14);
+  font-size: 12px;
+  color: #ebd9cb;
+  text-align: center;
+}
+
+.victim-line {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.victim-line strong {
+  font-family: var(--font-serif);
+  color: var(--gold-light);
+  font-size: 15px;
+}
+
+.td-question-box {
+  position: relative;
+  min-height: 158px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px 16px;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(184, 37, 71, 0.18), rgba(14, 5, 10, 0.72));
+  border: 1px solid rgba(231, 194, 132, 0.28);
+}
+
+.td-charm-watermark {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+
+.td-question-text {
+  font-family: var(--font-serif);
+  font-size: 18.5px;
+  font-weight: 700;
+  color: #fff6ea;
+  line-height: 1.6;
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 13px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: rgba(10, 4, 7, 0.56);
+  border: 1px solid var(--gold-line-soft);
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.punish-toast {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(168, 31, 66, 0.26);
+  border: 1px solid rgba(224, 92, 122, 0.45);
+  font-size: 12.5px;
+  color: #ffe2ea;
+  text-align: center;
+}
+
+/* ==================== 4. LUXURY LEATHER DICE CUP ==================== */
+.dice-arena {
+  position: relative;
+  height: 248px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 48%, #341120 0%, #16070e 74%, #0d0408 100%);
+  border: 1px solid rgba(231, 194, 132, 0.34);
+  box-shadow: inset 0 0 32px rgba(0, 0, 0, 0.78);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dice-tray {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  max-width: 262px;
+}
+
+.die-face {
+  width: 60px;
+  height: 60px;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #fff8eb 0%, #ead6b8 65%, #cfb084 100%);
+  border: 1px solid rgba(255, 250, 240, 0.8);
+  box-shadow:
+    inset 0 -3px 4px rgba(92, 56, 18, 0.35),
+    0 10px 20px rgba(0, 0, 0, 0.65);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 9px;
+  place-items: center;
+  transition: transform 0.2s ease;
+}
+
+.die-face.rolling {
+  animation: diceShake 0.34s ease infinite;
+}
+
+@keyframes diceShake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-4px, 3px) rotate(-10deg); }
+  50% { transform: translate(4px, -3px) rotate(10deg); }
+  75% { transform: translate(-3px, -2px) rotate(-6deg); }
+}
+
+.pip {
+  width: 9.5px;
+  height: 9.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #3b1c29, #14070c);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.pip.red {
+  background: radial-gradient(circle at 35% 35%, #ff5c7c, #a81333);
+  width: 11.5px;
+  height: 11.5px;
+}
+
+.dice-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(74, 18, 36, 0.94), rgba(17, 7, 12, 0.98));
+  transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+  cursor: pointer;
+}
+
+.dice-cup-img {
+  width: 132px;
+  height: 132px;
+  object-fit: contain;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.75));
+  transition: transform 0.24s ease;
+}
+
+.dice-cover.peeking {
+  transform: translateY(-82%);
+  opacity: 0.35;
+}
+
+.dice-cover.opened {
+  transform: translateY(-104%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cover-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.8px;
+}
+
+.cover-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.dice-summary {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+/* ==================== BOTTOM NAV ==================== */
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 452px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 8px 10px calc(10px + var(--safe-bottom));
+  background: linear-gradient(180deg, rgba(22, 8, 15, 0.94), rgba(12, 4, 9, 0.98));
+  border-top: 1px solid var(--gold-line);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 20;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 2px;
+  color: rgba(194, 170, 157, 0.68);
+  transition: color 0.18s ease, transform 0.16s ease;
+}
+
+.nav-item.active {
+  color: var(--gold-light);
+}
+
+.nav-item.active .nav-icon svg {
+  filter: drop-shadow(0 0 8px rgba(231, 194, 132, 0.55));
+}
+
+.nav-item:active {
+  transform: scale(0.92);
+}
+
+.nav-icon {
+  height: 22px;
+  display: grid;
+  place-items: center;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* ==================== MODALS & TOAST ==================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(6, 2, 5, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 436px;
+  max-height: 82dvh;
+  overflow-y: auto;
+  border-radius: 18px;
+  padding: 18px;
+  background: linear-gradient(165deg, #220d18, #12060c);
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.78);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  color: var(--gold-light);
+  font-size: 17px;
+}
+
+.modal-sub {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.modal-sub code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: rgba(231, 194, 132, 0.14);
+  color: var(--gold-light);
+}
+
+.quick-preset-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.compact-seg {
+  margin-bottom: 10px;
+}
+
+.player-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--gold-line-soft);
+}
+
+.player-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1c0810;
+}
+
+.player-remove-btn {
+  font-size: 12px;
+  color: #ffc2d1;
+  padding: 4px 9px;
+  border-radius: 7px;
+  background: rgba(184, 37, 71, 0.22);
+  border: 1px solid rgba(224, 92, 122, 0.35);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(82px + var(--safe-bottom));
+  transform: translateX(-50%);
+  z-index: 60;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(26, 10, 18, 0.96);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.68);
+  white-space: nowrap;
+  max-width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
